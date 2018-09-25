@@ -16,4 +16,4 @@ enable_testing()
 
 add_executable(mcu_verso
         include/conditional.h
-        src/test/test_library.cpp include/container.h include/util.h)
+        src/test/test_library.cpp include/container.h include/util.h include/gcode.h include/estring.h)

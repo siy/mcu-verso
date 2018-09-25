@@ -7,15 +7,21 @@
 #pragma once
 
 namespace verso {
-    template <typename T, int Size>
+    template <typename T, size_t Size>
     class container {
+        public:
             using index_type = index_type_t<Size>;
-
+        private:
             index_type_t<Size> used;
             T data[Size];
         public:
 
             container():used {0} {}
+
+            container& clear() {
+                used = 0;
+                return *this;
+            }
 
             index_type new_index() {
                 assert(used < Size);
