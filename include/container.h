@@ -9,9 +9,8 @@
 namespace verso {
     template <typename T, size_t Size>
     class container {
-        public:
             using index_type = index_type_t<Size>;
-        private:
+
             index_type_t<Size> used;
             T data[Size];
         public:

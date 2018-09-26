@@ -39,7 +39,7 @@ const lest::test specification[] = {
     },
     SCENARIO("Simple string test " "[string]") {
         GIVEN("An empty string") {
-            string8 s;
+            string7 s;
 
             EXPECT(s.len() == 0);
 
@@ -52,7 +52,7 @@ const lest::test specification[] = {
                 }
             }
             WHEN("Other string is added") {
-                string8 n{(const uint8_t *) "Hi"};
+                string7 n{(const uint8_t *) "Hi"};
                 s.add(n);
 
                 THEN("String content is appended") {
