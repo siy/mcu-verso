@@ -19,20 +19,20 @@ const lest::test specification[] = {
             EXPECT(tc.capacity() == 10);
 
             WHEN("Element is added as is") {
-                tc.new_element() = 123;
+                tc.new_element() = 123U;
 
                 THEN("Container grows") {
                     EXPECT(tc.size() == 1);
-                    EXPECT(tc[0] == 123);
+                    EXPECT(tc[0] == 123U);
                 }
             }
             WHEN("Element is added as index") {
                 auto index = tc.new_index();
-                tc[index] = 321;
+                tc[index] = 321U;
 
                 THEN("Container grows") {
                     EXPECT(tc.size() == 1);
-                    EXPECT(tc[index] == 321);
+                    EXPECT(tc[index] == 321U);
                 }
             }
         }
@@ -41,13 +41,13 @@ const lest::test specification[] = {
         GIVEN("An empty string") {
             string7 s;
 
-            EXPECT(s.len() == 0);
+            EXPECT(s.len() == 0U);
 
             WHEN("Element is added") {
                 s.add('A');
 
                 THEN("String grows") {
-                    EXPECT(s.len() == 1);
+                    EXPECT(s.len() == 1U);
                     EXPECT(s[0] == 'A');
                 }
             }
@@ -56,7 +56,7 @@ const lest::test specification[] = {
                 s.add(n);
 
                 THEN("String content is appended") {
-                    EXPECT(s.len() == 2);
+                    EXPECT(s.len() == 2U);
                     EXPECT(s[0] == 'H');
                     EXPECT(s[1] == 'i');
                 }
@@ -66,7 +66,7 @@ const lest::test specification[] = {
                 s.add(c);
 
                 THEN("String content is appended") {
-                    EXPECT(s.len() == 2);
+                    EXPECT(s.len() == 2U);
                     EXPECT(s[0] == 'L');
                     EXPECT(s[1] == 'o');
                 }
@@ -75,7 +75,7 @@ const lest::test specification[] = {
                 s += 'F';
 
                 THEN("String grows") {
-                    EXPECT(s.len() == 1);
+                    EXPECT(s.len() == 1U);
                     EXPECT(s[0] == 'F');
                 }
             }
@@ -84,7 +84,7 @@ const lest::test specification[] = {
                 s += n;
 
                 THEN("String grows") {
-                    EXPECT(s.len() == 2);
+                    EXPECT(s.len() == 2U);
                     EXPECT(s[0] == 'D');
                     EXPECT(s[1] == 'o');
                 }
@@ -93,7 +93,7 @@ const lest::test specification[] = {
                 s += (const uint8_t *) "Dont";
 
                 THEN("String grows") {
-                    EXPECT(s.len() == 4);
+                    EXPECT(s.len() == 4U);
                     EXPECT(s[0] == 'D');
                     EXPECT(s[1] == 'o');
                     EXPECT(s[2] == 'n');
@@ -105,7 +105,7 @@ const lest::test specification[] = {
                 s += (const uint8_t *) "how";
 
                 THEN("String grows") {
-                    EXPECT(s.len() == 7);
+                    EXPECT(s.len() == 7U);
                     EXPECT(s[0] == 'A');
                     EXPECT(s[1] == 'n');
                     EXPECT(s[2] == 'y');
@@ -118,14 +118,19 @@ const lest::test specification[] = {
             WHEN("Substring is taken") {
                 s += (const uint8_t*) "a text";
 
-                auto ns{s(2, 5)};
+                string7 ns{ s(2U, 5U) };
 
                 THEN("Substring is correct") {
-                    EXPECT(ns.len() == 3);
+                    EXPECT(ns.len() == 3U);
                     EXPECT(ns[0] == 't');
                     EXPECT(ns[1] == 'e');
                     EXPECT(ns[2] == 'x');
                 }
+            }
+            WHEN("Integer value is converted and added") {
+                string15 ss = estring::of(10);
+
+
             }
         }
     },

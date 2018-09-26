@@ -17,5 +17,4 @@ namespace verso {
                                     conditional<S <= std::numeric_limits<uint16_t>::max(),
                                                uint16_t,
                                                uint32_t>>::type;
-
 }
