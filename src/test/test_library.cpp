@@ -71,6 +71,62 @@ const lest::test specification[] = {
                     EXPECT(s[1] == 'o');
                 }
             }
+            WHEN("Element is added via +=") {
+                s += 'F';
+
+                THEN("String grows") {
+                    EXPECT(s.len() == 1);
+                    EXPECT(s[0] == 'F');
+                }
+            }
+            WHEN("Other string is added via +=") {
+                string7 n{(const uint8_t *) "Do"};
+                s += n;
+
+                THEN("String grows") {
+                    EXPECT(s.len() == 2);
+                    EXPECT(s[0] == 'D');
+                    EXPECT(s[1] == 'o');
+                }
+            }
+            WHEN("Constant is added via +=") {
+                s += (const uint8_t *) "Dont";
+
+                THEN("String grows") {
+                    EXPECT(s.len() == 4);
+                    EXPECT(s[0] == 'D');
+                    EXPECT(s[1] == 'o');
+                    EXPECT(s[2] == 'n');
+                    EXPECT(s[3] == 't');
+                }
+            }
+            WHEN("Two pieces added") {
+                s += (const uint8_t *) "Any ";
+                s += (const uint8_t *) "how";
+
+                THEN("String grows") {
+                    EXPECT(s.len() == 7);
+                    EXPECT(s[0] == 'A');
+                    EXPECT(s[1] == 'n');
+                    EXPECT(s[2] == 'y');
+                    EXPECT(s[3] == ' ');
+                    EXPECT(s[4] == 'h');
+                    EXPECT(s[5] == 'o');
+                    EXPECT(s[6] == 'w');
+                }
+            }
+            WHEN("Substring is taken") {
+                s += (const uint8_t*) "a text";
+
+                auto ns{s(2, 5)};
+
+                THEN("Substring is correct") {
+                    EXPECT(ns.len() == 3);
+                    EXPECT(ns[0] == 't');
+                    EXPECT(ns[1] == 'e');
+                    EXPECT(ns[2] == 'x');
+                }
+            }
         }
     },
 //    CASE("Simple lexer test") {
